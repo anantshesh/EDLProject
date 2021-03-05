@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group >
+        <item android:id="@+id/nav_profile"
+            android:title="Profile"/>
+
+        <item android:id="@+id/nav_notification"
+            android:title="Notification"/>
+
+        <item android:id="@+id/nav_discussion"
+            android:title="Discussion"/>
+
+        <item android:id="@+id/nav_recorded_videos"
+            android:title="Recorded Videos"/>
+
+        <item android:id="@+id/nav_subjects"
+            android:title="Subjects"/>
+
+
+
+    </group>
+
+    <item android:title="Account">
+
+        <menu>
+            <item android:id="@+id/change_password"
+                android:title="Change_Password"/>
+
+            <item android:id="@+id/logout"
+                android:title="Logout"/>
+        </menu>
+    </item>
+</menu>

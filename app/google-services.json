@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "432457271607",
+    "project_id": "edification-4db5c",
+    "storage_bucket": "edification-4db5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432457271607:android:af019123a3fa27dba3f2b2",
+        "android_client_info": {
+          "package_name": "com.example.edification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432457271607-bsgsftuq3k9q3vj98vess6lvt52nkgm7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYHtl52kpItc7fpq_DPb_CHns_Fw7ipx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "432457271607-bsgsftuq3k9q3vj98vess6lvt52nkgm7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
