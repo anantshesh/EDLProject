@@ -9,12 +9,14 @@
         <item>Faculty</item>
     </string-array>
 
+
     <string-array name="Dept_type">
         <item>Computer Science</item>
         <item>Information Science</item>
         <item>Civil</item>
         <item>Electronics and Communication</item>
     </string-array>
+
     <string name="title_activity_home_page">homePage</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -28,4 +30,6 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_main1">MainActivity1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
