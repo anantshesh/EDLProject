@@ -64,6 +64,7 @@ public class uploadDiscussion extends Fragment {
         adapterCategoryOfItem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         department.setAdapter(adapterCategoryOfItem);
         dept = department.getSelectedItem().toString();
+
         firebaseAuth = FirebaseAuth.getInstance();
         checkUserStatus();
 

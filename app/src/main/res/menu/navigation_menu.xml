@@ -18,6 +18,16 @@
         <item android:id="@+id/nav_subjects"
             android:title="Subjects"/>
 
+        <item
+            android:id="@+id/videoUpload"
+            android:title="Upload Videos"
+            />
+
+        <item
+            android:id="@+id/uploadStudyMaterial"
+            android:title="Upload Study Material"
+            />
+
 
 
     </group>
