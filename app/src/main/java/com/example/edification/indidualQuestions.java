@@ -53,7 +53,6 @@ public class indidualQuestions extends AppCompatActivity {
 
     private List<Answers> answersList = new ArrayList<Answers>();
     private answerAdapter answerAdapter;
-
     ProgressDialog pd;
 
 

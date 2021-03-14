@@ -5,27 +5,47 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.edification.adapters.videosAdapter;
+import com.example.edification.models.Videos;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity2 extends AppCompatActivity {
 
     View navView;
 
     private FirebaseAuth firebaseAuth;
-    String myUid, myEmail;
+    String myUid, myEmail, typeUser;
+
+    private RecyclerView recyclerView;
+    private ArrayList<Videos> videosArrayList;
+    private videosAdapter videosAdapter;
+
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +68,76 @@ public class MainActivity2 extends AppCompatActivity {
         navView = navigationView.inflateHeaderView(R.layout.navigation_header);
         navView = navigationView.getHeaderView(0);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                UserMenuSelectced(menuItem);
-                return false;
-            }
+        recyclerView = findViewById(R.id.VideosRecycler);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity2.this);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        loadVideos();
+
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            UserMenuSelectced(menuItem);
+            return false;
         });
 
         checkCurrentUser();
 
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("User");
+        Query query = ref.orderByChild("Uid").equalTo(myUid);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    typeUser = "" + ds.child("User_type").getValue();
+
+                    System.out.println("This is " + typeUser);
+
+                    if(typeUser.equals("Student")){
+                        hideItem();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void loadVideos() {
+        videosArrayList = new ArrayList<>();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Videos");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    Videos videos = ds.getValue(Videos.class);
+                    videosArrayList.add(videos);
+
+                }
+
+                videosAdapter = new videosAdapter(MainActivity2.this, videosArrayList);
+                recyclerView.setAdapter(videosAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void hideItem() {
+        navigationView = findViewById(R.id.navigation_view);
+        Menu nav_manu = navigationView.getMenu();
+        nav_manu.findItem(R.id.videoUpload).setVisible(false);
+        nav_manu.findItem(R.id.uploadStudyMaterial).setVisible(false);
     }
 
     private void checkCurrentUser() {
@@ -101,6 +181,10 @@ public class MainActivity2 extends AppCompatActivity {
 
             case R.id.nav_subjects:
                 startActivity(new Intent(getApplicationContext(), Subjects.class));
+                break;
+
+            case R.id.videoUpload:
+                startActivity(new Intent(getApplicationContext(), UploadVideo.class));
                 break;
 
             case R.id.logout:
