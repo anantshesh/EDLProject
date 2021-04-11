@@ -6,34 +6,135 @@
     android:layout_height="match_parent"
     tools:context=".UploadVideo2">
 
+
     <EditText
-        android:id="@+id/title"
+        android:id="@+id/videotitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:hint="Video Title" />
 
-    <VideoView
-        android:id="@+id/videoView1"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="5dp" />
-
-    <Button
+    <EditText
+        android:id="@+id/desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/uploadVideo"
-        android:layout_below="@+id/videoView1"
-        android:layout_marginTop="5dp"
-        android:text="Upload Video"
+        android:layout_below="@+id/videotitle"
+        android:layout_margin="10dp"
+        android:hint="Video Description"
+        android:inputType="textCapSentences|textMultiLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/desc"
+        android:id="@+id/layoutVideo"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/set_time_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Premier Date"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/start_time_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="0000"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            />
+
+        <TextView
+            android:id="@+id/start_time_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            />
+
+        <TextView
+            android:id="@+id/start_time_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            />
+
+        <Spinner
+
+            android:id="@+id/start_time_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:scrollbarSize="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            />
+
+        <Spinner
+            android:id="@+id/start_time_mins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="22dp" />
+    </LinearLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/dept"
+        android:layout_below="@+id/layoutVideo"
         />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+
+    <VideoView
+        android:id="@+id/vv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/dept"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+
+    <Button
+        android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/vv"
         android:layout_alignParentRight="true"
-        android:id="@+id/videoPick"
-        android:src="@drawable/ic_video"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:text="Select Video"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/push"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:text="Push" />
+
 
 </RelativeLayout>
