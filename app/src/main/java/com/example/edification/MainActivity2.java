@@ -184,7 +184,7 @@ public class MainActivity2 extends AppCompatActivity {
                 break;
 
             case R.id.videoUpload:
-                startActivity(new Intent(getApplicationContext(), UploadVideo.class));
+                startActivity(new Intent(getApplicationContext(), UploadVideo2.class));
                 break;
 
             case R.id.logout:
