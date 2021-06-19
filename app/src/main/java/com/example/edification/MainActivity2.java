@@ -28,7 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -41,6 +44,8 @@ public class MainActivity2 extends AppCompatActivity {
     private ArrayList<Videos> videosArrayList;
     private videosAdapter videosAdapter;
 
+    Date currentDate = null;
+    private SimpleDateFormat mdformat;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -54,6 +59,8 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        mdformat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
 
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
@@ -73,6 +80,7 @@ public class MainActivity2 extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity2.this);
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -112,18 +120,74 @@ public class MainActivity2 extends AppCompatActivity {
     private void loadVideos() {
         videosArrayList = new ArrayList<>();
 
+        Calendar c = Calendar.getInstance();
+        try{
+            currentDate = mdformat.parse(mdformat.format(c.getTime()));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Videos");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                videosArrayList.clear();
                 for(DataSnapshot ds : snapshot.getChildren()){
                     Videos videos = ds.getValue(Videos.class);
-                    videosArrayList.add(videos);
+                    Calendar c = Calendar.getInstance();
+                    Date startDate = null, endDate = null;
+
+                    for(int videoS = 0; videoS <videosArrayList.size(); videoS++){
+                        try{
+                            startDate = mdformat.parse(videosArrayList.get(videoS).getVideoPremierTime());
+                        }
+                        catch (Exception e){
+                            e.printStackTrace();
+                        }
+                        if (currentDate.compareTo(startDate) >= 0){
+                            videosArrayList.remove(videoS);
+                            videosAdapter = new videosAdapter(MainActivity2.this, videosArrayList);
+                            recyclerView.setAdapter(videosAdapter);
+                        }
+                    }
+
+//                    videosArrayList.add(videos);
+//                    videosAdapter = new videosAdapter(MainActivity2.this, videosArrayList);
+//                    recyclerView.setAdapter(videosAdapter);
 
                 }
+            }
 
-                videosAdapter = new videosAdapter(MainActivity2.this, videosArrayList);
-                recyclerView.setAdapter(videosAdapter);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Videos");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                videosArrayList.clear();
+                for (DataSnapshot ds : snapshot.getChildren()){
+                    Videos videos = ds.getValue(Videos.class);
+                    Calendar c = Calendar.getInstance();
+                    Date startDate = null;
+                    try{
+                        startDate = mdformat.parse(videos.getVideoPremierTime());
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                    System.out.println("Checkoff " + startDate);
+                    System.out.println("Current time" + currentDate);
+                    if (currentDate.compareTo(startDate) <= 0){
+                        videosArrayList.add(videos);
+                        videosAdapter = new videosAdapter(MainActivity2.this, videosArrayList);
+                        recyclerView.setAdapter(videosAdapter);
+                    }
+                }
             }
 
             @Override

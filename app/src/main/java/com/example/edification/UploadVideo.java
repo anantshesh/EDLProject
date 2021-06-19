@@ -1,46 +1,46 @@
-//package com.example.edification;
-//
-//import androidx.annotation.NonNull;
-//import androidx.annotation.Nullable;
-//import androidx.annotation.RequiresApi;
-//import androidx.appcompat.app.ActionBar;
-//import androidx.appcompat.app.AlertDialog;
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.core.app.ActivityCompat;
-//import androidx.core.content.ContextCompat;
-//
-//import android.Manifest;
-//import android.app.ProgressDialog;
-//import android.content.ContentValues;
-//import android.content.Intent;
-//import android.content.pm.PackageManager;
-//import android.database.Cursor;
-//import android.net.Uri;
-//import android.os.Build;
-//import android.os.Bundle;
-//import android.provider.MediaStore;
-//import android.text.TextUtils;
-//import android.util.Log;
-//import android.widget.Button;
-//import android.widget.EditText;
-//import android.widget.MediaController;
-//import android.widget.Toast;
-//import android.widget.VideoView;
-//
-//import com.google.android.gms.tasks.OnFailureListener;
-//import com.google.android.gms.tasks.OnSuccessListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.android.material.floatingactionbutton.FloatingActionButton;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.storage.FirebaseStorage;
-//import com.google.firebase.storage.StorageReference;
-//
-//import java.util.HashMap;
-//
-//public class UploadVideo extends AppCompatActivity {
-//
-//
+package com.example.edification;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.MediaController;
+import android.widget.Toast;
+import android.widget.VideoView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.HashMap;
+
+public class UploadVideo extends AppCompatActivity {
+
+
 //    private ActionBar actionBar;
 //
 //    private EditText title;
@@ -63,9 +63,9 @@
 //
 //
 //    @RequiresApi(api = Build.VERSION_CODES.O)
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_upload_video);
 //
 //        actionBar = getSupportActionBar();
@@ -109,18 +109,18 @@
 //            }
 //
 //        });
-//
-//
-//    }
-//
-//
+
+
+    }
+
+
 //    @Override
 //    public boolean onSupportNavigateUp() {
 //        onBackPressed();
 //        return super.onSupportNavigateUp();
 //    }
-//
-//
+
+
 //    private void videoPickDialog() {
 //        String[] option = {"Camera", "Gallery"};
 //
@@ -290,5 +290,5 @@
 //
 //                });
 //    }
-//
-//}
+
+}
