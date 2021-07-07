@@ -15,5 +15,6 @@ public class ExampleUnitTest {
 
         //Trial Junit code
         assertEquals(4, 2 + 2);
+        assertEquals(10, 5+5);
     }
 }
