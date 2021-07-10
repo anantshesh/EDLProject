@@ -9,7 +9,7 @@ pipeline {
    stages {
         stage('Checkout') {
             steps { //Checking out the repo
-                checkout changelog: true, poll: true, scm: [$class: 'GitSCM', branches: [[name: '*/master']], browser: [$class: 'GitSCM', repoUrl: 'https://github.com/anantshesh/EDLProject'], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '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', url: 'ssh://git@github.com:anantshesh/EDLProject.git']]]
+                checkout changelog: true, poll: true, scm: [$class: 'GitSCM', branches: [[name: '*/master']], browser: [$class: 'GitSCM', repoUrl: 'https://github.com/anantshesh/EDLProject'], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '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', url: 'ssh://https://github.com/anantshesh/EDLProject.git']]]
             }
         }
         stage('Unit & Integration Tests') {
