@@ -7,13 +7,14 @@ pipeline {
         pollSCM('* * * * *') //polling for changes, here once a minute
     }
    stages {
-       stage('Gradle Build') {
-         if (isUnix()) {
-           sh './gradlew clean build'
-         } 
-         else {
-           bat 'gradlew.bat clean build'
-         }
+      stage 'build_Project'
+     node {
+       if(isUnix()) {
+         sh 'gradle build --info'
        }
+       else {
+         bat 'gradle build --info'
+       }
+     }
    } 
 }
