@@ -9,6 +9,9 @@ pipeline {
    stages {
         stage('Unit & Integration Tests') {
             steps {
+              echo 'Compile project'
+              sh "chmod +x gradlew"
+              sh "./gradlew clean build --no-daemon"
                 script {
                     try {
                         sh './gradlew clean test --no-daemon' //run a gradle task
