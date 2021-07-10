@@ -7,20 +7,23 @@ pipeline {
         pollSCM('H * * * *') //polling for changes, here once a minute
     }
    stages {
-        stage('Unit & Integration Tests') {
-            steps {
-              echo 'Compile project'
-              sh "chmod +x gradlew"
-              sh "./gradlew clean build --no-daemon"
-                script {
-                      try {
-                        sh './gradlew clean test --no-daemon' //run a gradle task
-                      } 
-                  finally {
-                    junit '**/build/test-results/test/*.xml' //make the junit test results available in any case (success & failure)
-                  }   
-                }
+        stage('Build') {
+          repositories {
+            google()
+            jcenter()
+        }
+          dependencies {
+            classpath "com.android.tools.build:gradle:4.1.3"
+            classpath 'com.google.gms:google-services:4.3.8'
+          }
+          allprojects {
+            repositories {
+              google()
+              jcenter()
             }
-        }  
+          }
+          task clean(type: Delete) {
+            delete rootProject.buildDir
+          }
    } 
 }
