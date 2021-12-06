@@ -93,6 +93,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         checkCurrentUser();
 
+        //Sample change
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("User");
         Query query = ref.orderByChild("Uid").equalTo(myUid);
         query.addValueEventListener(new ValueEventListener() {
@@ -249,6 +251,10 @@ public class MainActivity2 extends AppCompatActivity {
 
             case R.id.videoUpload:
                 startActivity(new Intent(getApplicationContext(), UploadVideo2.class));
+                break;
+
+            case R.id.uploadStudyMaterial:
+                startActivity(new Intent(getApplicationContext(), UploadStudyMaterial.class));
                 break;
 
             case R.id.logout:

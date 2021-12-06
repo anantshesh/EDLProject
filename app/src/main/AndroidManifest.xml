@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Edification">
-        <activity android:name=".UploadVideo2"></activity>
-        <activity android:name=".UploadVideo"></activity>
+        <activity android:name=".UploadStudyMaterial"></activity>
+        <activity android:name=".UploadVideo2" />
+        <activity android:name=".UploadVideo" />
         <activity android:name=".indidualQuestions" />
         <activity android:name=".Subjects" />
         <activity android:name=".RecordedVideos" />
